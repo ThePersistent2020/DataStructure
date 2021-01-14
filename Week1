@@ -1,0 +1,169 @@
+//Array
+
+#include <iostream>
+#include <stdio.h>
+#include <string>
+
+using namespace std;
+
+int main() {
+	cout << "hello" << endl;
+	printf("%s\n","hello from c");
+	int A[5];
+	A[0] = 12;
+	A[1] = 15;
+	A[2] = 25;
+	cout << sizeof(A) << endl;
+	printf("%d\n", A[2]);
+
+	int B[] = { 2,4,6,8,10,12,14 };
+	cout << sizeof(B) << endl;
+	printf("%d\n", B[2]);
+
+	for (int i = 0; i < 7; i++) {
+		cout << "element index " << i << " is " << B[i] << endl;
+		cout << "element index " + to_string(i) + " is " 
+			     + to_string(B[i]) ;
+	}
+
+
+	int C[3] = { 100,200 };
+	cout << sizeof(C) << endl;
+	printf("%d\n", C[2]);
+	
+	for (int x : C) {
+		cout << x << endl;
+	}
+
+
+	int D[3] = { 0 };
+	cout << sizeof(D) << endl;
+	
+	for (int x : D) {
+		cout << x << endl;
+	}
+
+	cout << "-------E[]-------" << endl;
+	int E[3] ;
+	cout << sizeof(E) << endl;
+	E[1] = 99;
+
+	for (int x : E) {
+		cout << x << endl;
+	}
+
+
+
+	/*
+	int p;
+	cout << "enter size : " << endl;
+	cin >> p;
+	int F[p];
+	*/
+
+	
+
+	return 0;
+}
+
+
+
+///////Structure/////////////////////////////////////////
+
+#include<iostream>
+
+using namespace std;
+
+struct Card {
+    int face; //4 bytes
+    int shape; //4 bytes
+    int color; //4 bytes
+
+};
+
+int main() {
+    struct Card deck[52] = { {1,0,0},
+          {2,0,0},{1,1,0},{2,1,0} };
+
+    printf("%d\n", deck[0].face);
+    printf("%d\n", deck[0].shape);
+    printf("%d\n", deck[0].color);
+    printf("%I64u\n", sizeof(deck));
+    
+}
+
+
+/////////////////Structure//////////////////////////////////////
+
+#include<iostream>
+
+using namespace std;
+
+//we can group them 
+struct Rectangle {
+    int length; //4 bytes
+    int breadth; //4 bytes
+    char x; //allocates 4 bytes which is easier for machine but uses only 1 byte
+};
+
+int main() {
+    //struct Rectangle r; //declaration
+    struct Rectangle r = { 10,5 }; //declaration and initialization
+    r.length = 100;
+    r.breadth = 50;
+
+    printf("area of rectangle is %d\n", r.length* r.breadth);
+    cout << "area of rectangle is " << r.length * r.breadth << endl;
+    printf("size of r is %I64u\n", sizeof(r));
+    printf("size of r.x is %d\n", sizeof(r.x));
+    
+}
+
+
+
+///////////////////Structure///////////////////////////////////////
+
+#include<iostream>
+
+using namespace std;
+
+//when you declare a variable we could get all
+//of these together with . operator
+//A structure is a user defined data type in C / C++.A
+//structure creates a data type that can be used to group 
+//items of possibly different types into a single type.
+
+struct Student {
+    int age;
+    char name[25];
+    char address[50];
+};
+
+int main() {
+    struct Student s= {20, "Ali", "Montreal"};
+    
+    // Copies the first num characters of source to destination
+    strncpy_s(s.name, "aghamirkarimi", sizeof(s.name));
+
+    cout << "the student is " << s.name << endl;;
+
+    char A[10] = "myDad";   
+    printf("%s", A);
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
