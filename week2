@@ -1,0 +1,171 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+	//reference en c++ nest rien qu'un alias. dans ce cas,
+	// variable 'a'  a deux noms: 'a' et 'r'
+	//reference is another name for the variable. it does NOT consume
+	//any memory !!!
+	int a = 10; // inside the stack.
+	int& r = a; //r est un surnom pour la variable a
+	//example: maxime --> max 
+
+	cout << " a " << a << endl;
+	r++;
+	cout << " a " << a << endl;
+	cout << " r " << r << endl;
+	cout << " &a " << &a << endl;
+	cout << " &r " << &r << endl;
+
+	int b = 25;
+	r = b; //r qui est un surnom pour 'a' sera egal au 25 donc a=25
+	//r which is nickname of 'a', will be equal to 25 so a=25
+	cout << " a " << a << endl; //25
+	cout << " r " << r << endl;  //25
+	cout << " &b " << &b << endl; //nouvelle addresse
+	cout << " &r " << &r << endl; //ancienne addresse.
+
+	return 0;
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+
+using namespace std;
+
+
+struct Rectangle {
+	int length;
+	int breadth;
+};
+
+int main() {
+
+	int* p1;
+	char* p2;
+	float* p3;
+	double* p4;
+	struct Rectangle* p5;
+
+	cout << sizeof(p1) << endl;
+	cout << sizeof(p2) << endl;
+	cout << sizeof(p3) << endl;
+	cout << sizeof(p4) << endl;
+	cout << sizeof(p5) << endl;
+
+
+
+
+
+	return 0;
+}
+
+
+///////////////////////////////////////////////////////
+
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>   //this is added to use malloc
+
+using namespace std;
+
+int main() {
+
+	int a = 10;  //a data variable
+
+	int* p;  //declaration of pointer : an address variable
+	p = &a; //initialization of the pointer
+
+	cout << " a " << a << endl;
+	cout << " p " << p << endl;
+
+	//*p is used to dereference the pointer : meaning to see the value it's pointing to !
+	printf("using pointer p %d %p % p \n\n", *p, p, &a);
+
+	//array pointer
+	//creation of array in the stack
+	int A[5] = { 2,4,6,8,10 };
+	int* p1;
+	p1 = &A[0];       // p1 = A;
+
+	for (int i = 0; i < 5; i++) {
+		cout << A[i] << endl;
+		cout << p1[i] << endl << endl;;
+	}
+
+
+	//how to access the heap with a pointer
+	int* p2; //ALL VARIABLES ARE ALWAYS IN STACK . SO p2 is in the stack.
+	//it will allocate a total of 20 Bytes or whatever is for a an int times 5
+	p2 = (int *) malloc(5 * sizeof(int));
+	//in c++ : 
+	//p2 = new int[5];
+	p2[0] = 10;
+	cout << &p2[0] << endl;
+	p2[1] = 11;
+	cout << &p2[1] << endl;
+	p2[2] = 12;
+	cout << &p2[2] << endl;
+	p2[3] = 13;
+	p2[4] = 14;
+
+	for (int i = 0; i < 5; i++) {
+		cout << p2[i] << endl;
+	}
+
+	free(p2); //liberer lespace de heap ds c lang.
+	//delete[] p2; //deleteing the dynamic memory allocation in c++ lang.
+
+
+	return 0;
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////
+
+#include <iostream>
+using namespace std;
+
+
+struct Rectangle {
+
+	int length;
+	int breadth;
+};
+
+int main() {
+
+	//how to access a struct by pointer
+	struct Rectangle r = { 10,5 };
+	cout << r.breadth << endl;
+	cout << r.length << endl;
+
+	//we could do it like : r.length=15;
+	
+	struct Rectangle* p = &r;
+	
+	//these are the same
+	cout << &r << endl;
+	cout << &(*p) << endl; 
+
+	cout << p->length << endl;   //c lang. syntax
+	cout << p->breadth << endl;
+
+	(*p).length = 400; //dereferencer mon pointeur et lui donner une nouvelle valeur in c++
+	p->breadth = 200; //c lang.
+
+	cout << r.breadth << endl;
+	cout << r.length << endl;
+
+	return 0;
+}
+
+
+/////////////////////////////////////////////////////////////////////
